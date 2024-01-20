@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    restart: unless-stopped
+    privileged: true
+    user: root
+    ports:
+      - 8090:8080
+    container_name: jenkins
+    volumes:
+      - ~/jenkins:/var/jenkins_home  # Montage du répertoire de stockage Jenkins
+      - /var/run/docker.sock:/var/run/docker.sock  # Accès au socket Docker
+      - /usr/local/bin/docker:/usr/local/bin/docker  # Montage du binaire Docker
